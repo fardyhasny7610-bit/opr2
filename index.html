@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Open Redirect Lab</title>
+</head>
+<body>
+
+    <h1>Open Redirect Lab</h1>
+    <p>Halaman utama lab berhasil dibuka.</p>
+
+    <script>
+        // Intentionally vulnerable Open Redirect Lab
+        // Khusus pengujian pada lab milik sendiri.
+
+        // Mengambil path dari URL
+        let path = window.location.pathname;
+
+        // Menghapus satu slash pertama
+        path = path.substring(1);
+
+        // Jika path diawali dua slash, lakukan redirect
+        if (path.startsWith('//')) {
+
+            const destination = 'https:' + path;
+
+            window.location.replace(destination);
+        }
+    </script>
+
+</body>
+</html>
