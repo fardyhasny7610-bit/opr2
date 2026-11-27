@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,19 +12,22 @@
 
     <script>
         // Intentionally vulnerable Open Redirect Lab
-        // Khusus pengujian pada lab milik sendiri.
+        // Khusus pengujian pada lab sendiri.
 
-        // Mengambil path dari URL
+        const basePath = '/opr2/';
         let path = window.location.pathname;
+
+        // Mengambil path setelah nama repository
+        if (path.startsWith(basePath)) {
+            path = path.substring(basePath.length);
+        }
 
         // Menghapus satu slash pertama
         path = path.substring(1);
 
         // Jika path diawali dua slash, lakukan redirect
         if (path.startsWith('//')) {
-
             const destination = 'https:' + path;
-
             window.location.replace(destination);
         }
     </script>
