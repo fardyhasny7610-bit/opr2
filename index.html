@@ -10,27 +10,24 @@
     <h1>Open Redirect Lab</h1>
     <p>Halaman utama lab berhasil dibuka.</p>
 
-    <script>
-        // Intentionally vulnerable Open Redirect Lab
-        // Khusus pengujian pada lab sendiri.
+   
+<script>
+    // Intentionally vulnerable Open Redirect Lab
 
-        const basePath = '/opr2/';
-        let path = window.location.pathname;
+    const basePath = '/opr2/';
+    const currentPath = window.location.pathname;
 
-        // Mengambil path setelah nama repository
-        if (path.startsWith(basePath)) {
-            path = path.substring(basePath.length);
-        }
+    // Mengambil path setelah prefix repository
+    const path = currentPath.startsWith(basePath)
+        ? currentPath.substring(basePath.length)
+        : '';
 
-        // Menghapus satu slash pertama
-        path = path.substring(1);
+    // Redirect jika path diawali //
+    if (path.startsWith('//')) {
+        window.location.replace('https:' + path);
+    }
+</script>
 
-        // Jika path diawali dua slash, lakukan redirect
-        if (path.startsWith('//')) {
-            const destination = 'https:' + path;
-            window.location.replace(destination);
-        }
-    </script>
 
 </body>
 </html>
